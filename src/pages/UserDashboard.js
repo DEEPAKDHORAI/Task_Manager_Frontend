@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Navbar from "../components/Navbar";
 
@@ -12,7 +12,7 @@ function UserDashboard() {
   const [search, setSearch] = useState("");
 
   // Fetch tasks
-  const fetchTasks = async () => {
+  const fetchTasks = useCallback(async () => {
     try {
       const res = await axios.get(
         `http://localhost:5000/tasks/${userId}`
@@ -21,8 +21,8 @@ function UserDashboard() {
     } catch (error) {
       console.log(error);
     }
-  };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId]);
+
   useEffect(() => {
     fetchTasks();
   }, [fetchTasks]);
