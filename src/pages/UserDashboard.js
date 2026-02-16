@@ -25,7 +25,7 @@ function UserDashboard() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchTasks();
-  }, []);
+  }, [fetchTasks]);
 
   // Add or Update Task
   const handleSubmit = async () => {
